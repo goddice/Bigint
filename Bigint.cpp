@@ -272,7 +272,7 @@ istream& operator>> (istream& in, Bigint& n) {
     string s;
     if (in >> s) {
         // assumes valid digit string
-        for (int i = 0; i <= DIGITS; i++)
+        for (int i = 0; i < DIGITS; i++)
         {
              if (i < s.length())
              {
