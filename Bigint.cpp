@@ -113,6 +113,10 @@ string exportToBaseNstr(Bigint n, int baseN)
      }
 
      reverse(result.begin(), result.end());
+     if (result.length() == 0)
+     {
+          result = "0";
+     }
      return result;
 }
 //
@@ -321,7 +325,7 @@ ostream& operator<< (ostream &out, const Bigint& n) {
              break;
          }
     }
-    if ("" == result)
+    if (n ==Bigint(0))
     {
         result = "0";
     }
