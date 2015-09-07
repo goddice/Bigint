@@ -9,6 +9,9 @@
 #define DIGITS 256
 #endif
 
+#include <string>
+using namespace std;
+
 class Bigint {
 
   public:
@@ -30,6 +33,12 @@ class Bigint {
     Bigint& operator= (const Bigint& other);
     Bigint& operator= (int other);
 
+    ///
+    friend char numToChar(char num);
+    friend int charToNum(char num);
+    friend Bigint importBaseNstr(string str, int baseN);
+    friend string exportToBaseNstr(Bigint n, int baseN);
+    ///
     /**
      * Computes sum, difference, product, or quotient of n1 and n2
      */
@@ -50,6 +59,7 @@ class Bigint {
       */
     friend std::ostream& operator<< (std::ostream &out, const Bigint& n);
     friend std::istream& operator>> (std::istream& in, Bigint& n);
+
 
   private:
     int digits[DIGITS];

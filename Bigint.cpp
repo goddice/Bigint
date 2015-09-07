@@ -6,6 +6,7 @@
 
 #include <string>
 #include <iostream>
+#include <algorithm>
 #include "Bigint.h"
 
 using namespace std;
@@ -55,6 +56,66 @@ Bigint::operator int () const {
     return result;
 }
 
+
+//
+char numToChar(char num)
+{
+     if (num <= 9 && num >= 0)
+     {
+         num += 48;
+     }
+     else
+     {
+         num = num - 10 + 'A';
+     }
+
+     return num;
+}
+
+int charToNum(char num)
+{
+     if (num <= '9' && num >= '0')
+     {
+         num -= 48;
+     }
+     else if(num <= 'z' && num >= 'a')
+     {
+         num = num - 'a' + 10;
+     }
+     else
+     {
+         num = num - 'A' + 10;
+     }
+
+     return num;
+}
+
+Bigint importBaseNstr(string str, int baseN)
+{
+     Bigint factor = 1;
+     Bigint n = 0;
+     for(int i=0; i<str.length(); i++)
+     {
+         n = n + factor * Bigint(charToNum(str[i]));
+         factor = factor * Bigint(baseN);
+     }
+
+     return n;
+}
+
+string exportToBaseNstr(Bigint n, int baseN)
+{
+     string result = "";
+     while (n > Bigint(0))
+     {
+         result += numToChar(int(n - n * (n / baseN)));
+         n = n / baseN;
+     }
+
+     reverse(result.begin(), result.end());
+     return result;
+}
+//
 /**
  * Arithmetic operations
  *
