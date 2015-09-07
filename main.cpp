@@ -9,6 +9,9 @@
 
 using namespace std;
 
+extern string exportToBaseNstr(Bigint n, int baseN);
+extern Bigint importBaseNstr(string str, int baseN);
+
 int main (int argc, char** argv) {
     int radix = 10;
     if (argc == 3)

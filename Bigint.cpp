@@ -96,7 +96,7 @@ Bigint importBaseNstr(string str, int baseN)
      Bigint n = 0;
      for(int i=0; i<str.length(); i++)
      {
-         n = n + factor * Bigint(charToNum(str[i]));
+         n = n + factor * Bigint(charToNum(str[str.length() - 1 - i]));
          factor = factor * Bigint(baseN);
      }
 
@@ -106,9 +106,9 @@ Bigint importBaseNstr(string str, int baseN)
 string exportToBaseNstr(Bigint n, int baseN)
 {
      string result = "";
-     while (n > Bigint(0))
+     while (!(n == Bigint(0)))
      {
-         result += numToChar(int(n - n * (n / baseN)));
+         result += numToChar(int(n - Bigint(baseN) * (n / baseN)));
          n = n / baseN;
      }
 
